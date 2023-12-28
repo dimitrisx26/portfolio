@@ -1,0 +1,22 @@
+.container {
+    color: white;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-radius: 20px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    cursor: pointer !important;
+    margin: 8px 0 8px 0;
+}
+
+a {
+    text-decoration: none !important;
+    cursor: pointer !important;
+    margin: 8px 0 8px 0;
+}

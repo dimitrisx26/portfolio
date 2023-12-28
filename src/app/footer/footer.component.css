@@ -1,0 +1,19 @@
+.footer {
+    background: #000000 !important;
+}
+
+.container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+}
+
+span {
+    color: rgb(170, 170, 170) !important;
+}
+
+a {
+    color: white !important;
+    text-decoration: none !important;
+    cursor: pointer !important;
+}

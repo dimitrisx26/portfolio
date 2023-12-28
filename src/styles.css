@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Roboto+Mono:wght@300&family=Roboto:wght@300;400&display=swap');
+
+body {
+    background-color: black;
+    /* background-image: url("/assets/images/bg1.jpg"); */
+    /* background-attachment: fixed; */
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+

@@ -1,0 +1,11 @@
+.container {
+    color: white;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+    border-radius: 20px;
+}
+
+button {
+    cursor: pointer !important;
+    margin: 8px 0 8px 0;
+}
