@@ -1,8 +1,7 @@
 .container {
     color: white;
-    margin-top: 5rem;
-    margin-bottom: 5rem;
-    border-radius: 20px;
+    margin-top: 3rem;
+    margin-bottom: 6rem;
 }
 
 img {
@@ -19,4 +18,8 @@ a {
     text-decoration: none !important;
     cursor: pointer !important;
     margin: 8px 0 8px 0;
+}
+
+.card-cover {
+    height: 250px;
 }
