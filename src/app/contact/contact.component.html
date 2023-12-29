@@ -1,9 +1,7 @@
 <div class="container col-xxl-8 px-4" id="contact">
   <h2 class="pb-2 border-bottom">Contact</h2>
 
-  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="contactForm">
-    <input type="hidden" name="access_key" value="63df0468-8da4-493f-a5f7-185595443042">
-
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="contactForm" method="POST">
     <div class="mb-3">
       <label class="form-label" for="name">Name</label>
       <input
@@ -23,17 +21,6 @@
         type="email"
         placeholder="Email Address"
         formControlName="email"
-      />
-    </div>
-
-    <div class="mb-3">
-      <label class="form-label" for="subject">Subject</label>
-      <input
-        class="form-control"
-        id="subject"
-        type="subject"
-        placeholder="Subject"
-        formControlName="subject"
       />
     </div>
 

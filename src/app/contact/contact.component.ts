@@ -11,8 +11,8 @@ export class ContactComponent {
   contactForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
-    subject: new FormControl('', Validators.required),
     message: new FormControl('', Validators.required),
+    access_key: new FormControl('63df0468-8da4-493f-a5f7-185595443042'),
   });
 
   constructor(private http: HttpClient) {}
@@ -21,10 +21,11 @@ export class ContactComponent {
   submitSuccessMessage = '';
 
   onSubmit() {
+    console.log('Form validity:', this.contactForm.valid);
+
     if (this.contactForm.valid) {
-      // Send form data to server or handle it in some other way
-      // ...
       const formData = this.contactForm.value;
+      console.log('Form data:', formData);
 
       this.http.post('https://api.web3forms.com/submit', formData).subscribe({
         next: (response) => {
@@ -45,5 +46,6 @@ export class ContactComponent {
       this.submitErrorMessage = 'Error sending message!';
       this.submitSuccessMessage = '';
     }
+    this.contactForm.reset();
   }
 }
