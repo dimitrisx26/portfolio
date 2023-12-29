@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
@@ -7,7 +7,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })
-export class ContactComponent {
+export class ContactComponent implements AfterViewInit {
+  @ViewChild('contact') contact: ElementRef;
+
   contactForm = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -16,6 +18,10 @@ export class ContactComponent {
   });
 
   constructor(private http: HttpClient) {}
+
+  ngAfterViewInit() {
+    this.contact.nativeElement.scrollIntoView({ behavior: 'smooth' });
+  }
 
   submitErrorMessage = '';
   submitSuccessMessage = '';
