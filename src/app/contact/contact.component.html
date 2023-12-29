@@ -1,7 +1,7 @@
 <div class="container col-xxl-8 px-4" id="contact">
   <h2 class="pb-2 border-bottom">Contact</h2>
 
-  <form id="contactForm">
+  <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" id="contactForm">
     <div class="mb-3">
       <label class="form-label" for="name">Name</label>
       <input
@@ -9,30 +9,19 @@
         id="name"
         type="text"
         placeholder="Name"
-        data-sb-validations="required"
-        required
+        formControlName="name"
       />
-      <div class="invalid-feedback" data-sb-feedback="name:required">
-        Name is required.
-      </div>
     </div>
 
     <div class="mb-3">
-      <label class="form-label" for="emailAddress">Email Address</label>
+      <label class="form-label" for="email">Email Address</label>
       <input
         class="form-control"
-        id="emailAddress"
+        id="email"
         type="email"
         placeholder="Email Address"
-        data-sb-validations="required, email"
-        required
+        formControlName="email"
       />
-      <div class="invalid-feedback" data-sb-feedback="emailAddress:required">
-        Email Address is required.
-      </div>
-      <div class="invalid-feedback" data-sb-feedback="emailAddress:email">
-        Email Address Email is not valid.
-      </div>
     </div>
 
     <div class="mb-3">
@@ -43,23 +32,30 @@
         type="text"
         placeholder="Message"
         style="height: 10rem"
-        data-sb-validations="required"
+        formControlName="message"
       ></textarea>
-      <div class="invalid-feedback" data-sb-feedback="message:required">
-        Message is required.
+    </div>
+
+    <div id="submitSuccessMessage">
+      <div *ngIf="submitSuccessMessage" class="text-center mb-3">
+        {{ submitSuccessMessage }}
       </div>
     </div>
 
-    <div class="d-none" id="submitSuccessMessage">
-      <div class="text-center mb-3">Form submission successful!</div>
-    </div>
-
-    <div class="d-none" id="submitErrorMessage">
-      <div class="text-center text-danger mb-3">Error sending message!</div>
+    <div id="submitErrorMessage">
+      <div *ngIf="submitErrorMessage" class="text-center text-danger mb-3">
+        {{ submitErrorMessage }}
+      </div>
     </div>
 
     <div class="d-grid">
-      <button class="btn btn-primary btn-lg px-4" type="submit">Submit</button>
+      <button
+        class="btn btn-primary btn-lg px-4"
+        type="submit"
+        [disabled]="!contactForm.valid"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>
