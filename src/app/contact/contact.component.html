@@ -10,7 +10,7 @@
         type="text"
         placeholder="Name"
         formControlName="name"
-      />
+        />
     </div>
 
     <div class="mb-3">
@@ -21,7 +21,7 @@
         type="email"
         placeholder="Email Address"
         formControlName="email"
-      />
+        />
     </div>
 
     <input
@@ -29,7 +29,7 @@
       name="botcheck"
       class="hidden"
       style="display: none"
-    />
+      />
 
     <div class="mb-3">
       <label class="form-label" for="message">Message</label>
@@ -44,15 +44,19 @@
     </div>
 
     <div id="submitSuccessMessage">
-      <div *ngIf="submitSuccessMessage" class="text-center mb-3">
-        {{ submitSuccessMessage }}
-      </div>
+      @if (submitSuccessMessage) {
+        <div class="text-center mb-3">
+          {{ submitSuccessMessage }}
+        </div>
+      }
     </div>
 
     <div id="submitErrorMessage">
-      <div *ngIf="submitErrorMessage" class="text-center text-danger mb-3">
-        {{ submitErrorMessage }}
-      </div>
+      @if (submitErrorMessage) {
+        <div class="text-center text-danger mb-3">
+          {{ submitErrorMessage }}
+        </div>
+      }
     </div>
 
     <div class="d-grid">
@@ -60,7 +64,7 @@
         class="btn btn-primary btn-lg px-4"
         type="submit"
         [disabled]="!contactForm.valid"
-      >
+        >
         Submit
       </button>
     </div>
