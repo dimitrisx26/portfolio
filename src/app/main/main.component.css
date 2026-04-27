@@ -231,6 +231,32 @@
   gap: 14px;
 }
 
+.core-skills-card {
+  border: 1px solid rgba(16, 21, 31, 0.08);
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 24px;
+  padding: 22px;
+}
+
+.skills-compact-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  color: #2458f5;
+  background: rgba(36, 88, 245, 0.08);
+  border: 1px solid rgba(36, 88, 245, 0.14);
+}
+
 .stack-card {
   display: grid;
   grid-template-columns: 12px minmax(0, 1fr) auto;
@@ -240,16 +266,12 @@
   border-radius: 24px;
 }
 
-.stack-card--recognition {
-  grid-template-columns: 18px minmax(0, 1fr) auto;
-}
-
 .stack-card__icon {
   width: 12px;
   height: 12px;
   border-radius: 999px;
   background: linear-gradient(180deg, #2458f5, #7aa6ff);
-  box-shadow: 0 0 0 6px rgba(36, 88, 245, 0.08);
+  box-shadow: 0 0 0 6px rgba(36, 88, 245, 0.05);
 }
 
 .stack-card__icon--light {
@@ -284,7 +306,8 @@
 }
 
 .service-list {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
+  gap: 18px;
 }
 
 .service-card,
@@ -294,8 +317,27 @@
 }
 
 .service-card {
-  padding: 22px;
-  min-height: 176px;
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 14px;
+  align-items: start;
+  padding: 18px;
+  min-height: 0;
+}
+
+.service-card__icon {
+  width: 28px;
+  height: 28px;
+  margin-top: 2px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 30% 30%, #fff 0 26%, transparent 27%),
+    linear-gradient(180deg, #2458f5, #7aa6ff);
+  box-shadow: 0 0 0 6px rgba(36, 88, 245, 0.05);
+}
+
+.service-card__body {
+  min-width: 0;
 }
 
 .service-card h3 {
@@ -303,7 +345,7 @@
 }
 
 .service-card p {
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   line-height: 1.7;
 }
 

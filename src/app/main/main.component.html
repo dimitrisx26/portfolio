@@ -21,33 +21,33 @@
         />
       </div>
 
-      <h1>I’m Dimitrios Xynos</h1>
-      <p class="hero-card__copy" id="about">
-        Front-End Developer specializing in Angular, focused on feature
-        development, legacy migration, and design system implementation.
-      </p>
+       <h1>I’m Dimitrios Xynos</h1>
+        <p class="hero-card__copy" id="about">
+          Full-stack web developer building responsive, scalable applications
+          with modern technologies and clean design systems.
+        </p>
 
-      <p class="hero-card__copy hero-card__copy--compact">
-        Computer Science graduate based in Greece. I work with Angular,
-        TypeScript, RxJS, and RESTful APIs to deliver scalable, responsive web
-        applications in Agile teams.
-      </p>
+        <p class="hero-card__copy hero-card__copy--compact">
+          Computer Science graduate based in Greece. I work with JavaScript,
+          TypeScript, Angular, React, Next.js, PostgreSQL, and Supabase to deliver
+          scalable web applications in Agile teams.
+        </p>
 
-      <div class="hero-card__actions">
-        <a class="button button--dark" href="#projects">See my work</a>
-        <a class="button button--light" href="mailto:dxynos@outlook.com"
-          >Contact</a
-        >
-      </div>
+        <div class="hero-card__actions">
+          <a class="button button--dark" href="#projects">See my work</a>
+          <a class="button button--light" href="mailto:dxynos@outlook.com"
+            >Contact</a
+          >
+        </div>
     </section>
 
     <div class="right-stack">
       <section class="intro-panel">
-        <h2>Front-End Developer with hands-on product experience.</h2>
+        <h2>Web developer with hands-on full-stack experience.</h2>
         <p>
-          Currently building and improving Angular applications at Obrela
-          Security Industries. Key work includes AngularJS-to-Angular migration,
-          custom design systems, and performance-focused feature delivery.
+          Currently building and improving applications at Obrela Security Industries.
+          Key work includes modernizing systems, implementing design systems, and
+          delivering scalable features.
         </p>
       </section>
 
@@ -70,15 +70,15 @@
         </div>
       </section>
 
-      <section class="panel" id="recognition">
+       <section class="panel" id="recognition">
         <div class="section-heading">
-          <p>Certifications & Languages</p>
+          <p>Certifications &amp; Languages</p>
         </div>
 
         <div class="stack-list">
-          <article class="stack-card stack-card--recognition">
+          <article class="stack-card">
             @for (item of recognitionItems; track $index) {
-              <div class="stack-card__icon stack-card__icon--light"></div>
+              <div class="stack-card__icon"></div>
               <div>
                 <h3>{{ item.title }}</h3>
                 <p class="stack-card__company">{{ item.company }}</p>
@@ -89,18 +89,35 @@
         </div>
       </section>
 
-      <section class="panel">
+      <section class="panel" id="skills">
         <div class="section-heading">
           <p>Core skills</p>
         </div>
 
-        <div class="service-list">
-          <article class="service-card">
-            @for (item of serviceItems; track $index) {
-              <h3>{{ item.title }}</h3>
-              <p>{{ item.text }}</p>
+        <div class="core-skills-card">
+          <div class="skills-compact-list" role="list">
+            @for (item of coreSkillItems; track $index) {
+              <span class="skill-pill" role="listitem">{{ item }}</span>
             }
-          </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="what-i-do">
+        <div class="section-heading">
+          <p>What I do</p>
+        </div>
+
+        <div class="service-list">
+          @for (item of serviceItems; track $index) {
+            <article class="service-card">
+              <div class="service-card__icon" aria-hidden="true"></div>
+              <div class="service-card__body">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.text }}</p>
+              </div>
+            </article>
+          }
         </div>
       </section>
 

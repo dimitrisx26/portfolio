@@ -7,6 +7,26 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class MainComponent {
+  readonly coreSkillItems = [
+    'JavaScript',
+    'TypeScript',
+    'Angular',
+    'RxJS',
+    'Astro',
+    'React',
+    'Next.js',
+    'HTML5',
+    'CSS3/SASS',
+    'Tailwind CSS',
+    'Bootstrap',
+    'REST APIs',
+    'PostgreSQL',
+    'Supabase',
+    'Git/GitHub',
+    'Responsive Design',
+    'UI/UX',
+  ];
+
   readonly experienceItems = [
     {
       title: 'Front-End Developer',
@@ -27,20 +47,20 @@ export class MainComponent {
 
   readonly serviceItems = [
     {
-      title: 'Software engineering',
-      text: 'Designing maintainable application code with an emphasis on clarity, reliability, and long-term support.',
+      title: 'Full Site Development',
+      text: 'End-to-end website creation from design to deployment, combining aesthetics with functionality for seamless user experiences across all devices.',
     },
     {
-      title: 'Web application development',
-      text: 'Building responsive browser-based products with Angular, TypeScript, HTML, and CSS.',
+      title: 'Web App Development',
+      text: 'Building interactive, scalable web applications with Angular, React, and TypeScript, featuring real-time data and responsive interfaces.',
     },
     {
-      title: 'Architecture and refactoring',
-      text: 'Modernizing legacy code, improving structure, and keeping components reusable and easy to evolve.',
+      title: 'E-Shop Development',
+      text: 'Creating robust online stores with secure payment processing, inventory management, and optimized checkout flows for maximum conversion.',
     },
     {
-      title: 'APIs and reactive data',
-      text: 'Integrating RESTful APIs and managing application state with RxJS in production environments.',
+      title: 'Landing Page Development',
+      text: 'Developing high-converting, fast-loading landing pages optimized for campaigns, product launches, and lead generation.',
     },
   ];
 
@@ -83,9 +103,9 @@ export class MainComponent {
       href: 'https://koufoudakis-dietitian.gr',
     },
     {
-      title: 'usekivia.com',
+      title: 'Kivia - SaaS Product',
       description:
-        'SaaS product website and platform, with a modern and professional design that effectively communicates the value proposition of the product.',
+        'SaaS product platform that provides a comprehensive solution for managing and optimizing business operations for nutritionists.',
       image: '/assets/images/kivia-preview.webp',
       href: 'https://usekivia.com',
     },

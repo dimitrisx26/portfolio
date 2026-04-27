@@ -75,7 +75,7 @@ TEL;TYPE=cell:+306980249001
 EMAIL:dxynos@outlook.com
 URL:https://dxynos.com
 ADR:;;Athens;;;
-NOTE:Full-stack web developer | Angular, React, Next.js, PostgreSQL, Supabase
+NOTE:Full-stack web developer | Angular, Astro, Next.js, PostgreSQL, Supabase
 END:VCARD`;
 
   readonly baseUrl = 'https://dxynos.com';
