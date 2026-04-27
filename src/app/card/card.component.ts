@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrl: './card.component.css',
   standalone: false,
 })
-export class CardComponent {
+export class CardComponent implements OnInit {
   readonly profile = {
     name: 'Dimitrios Xynos',
     title: 'Web Developer',
@@ -49,8 +49,16 @@ export class CardComponent {
   readonly links = [
     { label: 'Latest Project', url: 'https://usekivia.com', color: '#2458f5' },
     { label: 'View Portfolio', url: 'https://dxynos.com', color: '#1f5fff' },
-    { label: 'GitHub', url: 'https://github.com/dimitrisx26', color: '#181717' },
-    { label: 'LinkedIn', url: 'https://linkedin.com/in/dimitrios-xynos', color: '#0a66c2' },
+    {
+      label: 'GitHub',
+      url: 'https://github.com/dimitrisx26',
+      color: '#181717',
+    },
+    {
+      label: 'LinkedIn',
+      url: 'https://linkedin.com/in/dimitrios-xynos',
+      color: '#0a66c2',
+    },
     { label: 'Contact', url: 'mailto:dxynos@outlook.com', color: '#007acc' },
   ];
 
@@ -69,65 +77,25 @@ NOTE:Full-stack web developer | Angular, React, Next.js, PostgreSQL, Supabase
 END:VCARD`;
 
   readonly baseUrl = 'https://dxynos.com';
+  readonly walletPromptUrl = this.baseUrl + '/card?addWallet=1';
 
   getCurrentUrl(): string {
     return this.baseUrl + '/card';
   }
 
-  readonly qrCodeUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(this.baseUrl + '/card');
-
-  // Wallet Pass Data (Apple Wallet / Google Wallet compatible)
-  readonly walletPass = {
-    description: 'Dimitrios Xynos - Digital Business Card',
-    organizationName: 'Dimitrios Xynos',
-    passTypeIdentifier: 'pass.com.dxynos.business-card',
-    serialNumber: 'DX-2024-001',
-    teamIdentifier: 'DXNYOS',
-    foregroundColor: 'rgb(255,255,255)',
-    backgroundColor: 'rgb(17,24,39)',
-    labelColor: 'rgb(255,255,255)',
-    barcode: {
-      format: 'PKBarcodeFormatQR',
-      message: this.baseUrl + '/card',
-      messageEncoding: 'iso-8859-1',
-    },
-    generic: {
-      headerFields: [
-        { key: 'name', label: 'NAME', value: 'Dimitrios Xynos' },
-      ],
-      primaryFields: [
-        { key: 'title', label: 'TITLE', value: 'Web Developer' },
-      ],
-      secondaryFields: [
-        { key: 'email', label: 'Email', value: 'dxynos@outlook.com' },
-        { key: 'phone', label: 'Phone', value: '+30 698 024 9001' },
-      ],
-      auxiliaryFields: [
-        { key: 'location', label: 'Location', value: 'Athens, Greece' },
-        { key: 'skills', label: 'Skills', value: 'Angular, React, Next.js, PostgreSQL, Supabase' },
-      ],
-      backFields: [
-        {
-          key: 'about',
-          label: 'About',
-          value: 'Full-stack web developer building responsive, scalable applications with modern technologies and clean design systems.',
-        },
-        {
-          key: 'expertise',
-          label: 'Expertise',
-          value: 'JavaScript, TypeScript, Angular, React, Next.js, Astro, Node.js, HTML5, CSS3, Tailwind CSS, Bootstrap, PrimeNG, REST APIs, Supabase, PostgreSQL, Git/GitHub, Responsive Design, UI/UX Design, Agile/Scrum',
-        },
-        {
-          key: 'links',
-          label: 'Portfolio',
-          value: 'Latest Project: usekivia.com | GitHub: github.com/dimitrisx26 | LinkedIn: linkedin.com/in/dimitrios-xynos',
-        },
-      ],
-    },
-  };
+  readonly qrCodeUrl =
+    'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' +
+    encodeURIComponent(this.walletPromptUrl);
 
   showToast = false;
   private toastTimeout: any;
+
+  ngOnInit(): void {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('addWallet') === '1') {
+      this.openWalletPrompt();
+    }
+  }
 
   downloadVCard(): void {
     const blob = new Blob([this.vCardData], { type: 'text/vcard' });
@@ -144,28 +112,47 @@ END:VCARD`;
     this.showToastMessage();
   }
 
-  downloadWalletPassInfo(): void {
-    const passInfo = {
-      instructions: 'This pass contains contact information and can be added to Apple Wallet or Google Wallet. To create a proper .pkpass file for Apple Wallet, you would need to sign this with an Apple Developer certificate.',
-      passType: 'Generic Pass',
-      ...this.walletPass,
-      qrCodeUrl: this.qrCodeUrl,
-      vCardData: this.vCardData,
+  async openWalletPrompt(): Promise<void> {
+    const shouldContinue = window.confirm(
+      'Add Dimitrios Xynos card to your wallet/contact app now?',
+    );
+
+    if (!shouldContinue) {
+      return;
+    }
+
+    await this.addToWallet();
+  }
+
+  private async addToWallet(): Promise<void> {
+    const file = new File([this.vCardData], 'dimitrios-xynos-contact.vcf', {
+      type: 'text/vcard',
+    });
+
+    const nav = navigator as Navigator & {
+      canShare?: (data?: ShareData) => boolean;
     };
 
-    const blob = new Blob([JSON.stringify(passInfo, null, 2)], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
+    try {
+      if (nav.share && nav.canShare?.({ files: [file] })) {
+        await nav.share({
+          title: 'Dimitrios Xynos - Digital Card',
+          text: 'Add this digital card to your wallet/contact app.',
+          files: [file],
+          url: this.getCurrentUrl(),
+        });
+        this.showToastMessage();
+        return;
+      }
+    } catch (err) {
+      // If user cancels share, stop silently. Otherwise fallback to vCard download.
+      if ((err as Error)?.name === 'AbortError') {
+        return;
+      }
+    }
 
-    a.href = url;
-    a.download = 'business-card-pass.json';
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-
-    URL.revokeObjectURL(url);
-    this.showToastMessage();
+    // Fallback for browsers without file sharing support.
+    this.downloadVCard();
   }
 
   showToastMessage(): void {
@@ -183,12 +170,15 @@ END:VCARD`;
   copyToClipboard(text: string): void {
     // Clipboard API requires a secure context; gracefully fall back when unavailable.
     if (navigator.clipboard?.writeText && window.isSecureContext) {
-      navigator.clipboard.writeText(text).then(() => {
-        this.showToastMessage();
-      }).catch(err => {
-        console.error('Failed to copy:', err);
-        this.showManualCopyPrompt(text);
-      });
+      navigator.clipboard
+        .writeText(text)
+        .then(() => {
+          this.showToastMessage();
+        })
+        .catch((err) => {
+          console.error('Failed to copy:', err);
+          this.showManualCopyPrompt(text);
+        });
 
       return;
     }
@@ -197,6 +187,9 @@ END:VCARD`;
   }
 
   private showManualCopyPrompt(text: string): void {
-    window.prompt('Clipboard access is unavailable. Copy manually (Cmd+C, then Enter):', text);
+    window.prompt(
+      'Clipboard access is unavailable. Copy manually (Cmd+C, then Enter):',
+      text,
+    );
   }
 }
