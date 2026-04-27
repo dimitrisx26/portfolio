@@ -1,60 +1,164 @@
-<div class="container col-xxl-8 px-4">
-  <div class="row flex-lg-row-reverse align-items-center g-5 py-3">
-    <div class="col-10 col-sm-8 col-lg-6">
-      <img
-        src="/assets/images/photo2.jpg"
-        class="d-block mx-lg-auto img-fluid"
-        alt="Image of Dimitrios Xynos"
-        width="700"
-        height="500"
-        loading="lazy"
-      />
-    </div>
-    <div class="col-lg-6">
-      <h1 class="display-5 fw-bold lh-1 mb-3">Hello, I am Dimitris!</h1>
-      <h5 class="fw-bold" style="text-decoration: underline">
-        Computer Science Undergraduate and Front-End Developer
-      </h5>
-      <p class="lead">
-        Results-driven Computer Science Undergraduate specializing in Front-End
-        Development. Proficient in HTML, CSS, JavaScript, Angular and responsive
-        web design. Strong work ethic, adaptable team player, committed to
-        continuous learning. Seeking web development opportunities.
+<div class="portfolio-shell">
+  <header class="topbar">
+    <a class="brand" href="#top">Dimitrios Xynos</a>
+    <nav class="topbar__nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="topbar__cta" href="#contact">Talk with me</a>
+  </header>
+
+  <main class="portfolio-grid" id="top">
+    <section class="hero-card">
+      <div class="hero-card__image-wrap">
+        <img
+          src="/assets/images/photo2.jpg"
+          alt="Portrait of Dimitrios Xynos"
+          class="hero-card__image"
+          loading="eager"
+        />
+      </div>
+
+      <h1>I’m Dimitrios Xynos</h1>
+      <p class="hero-card__copy" id="about">
+        Front-End Developer specializing in Angular, focused on feature
+        development, legacy migration, and design system implementation.
       </p>
-      <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-        <a class="btn btn-light btn-lg px-4 me-md-2" routerLink="/contact"
+
+      <p class="hero-card__copy hero-card__copy--compact">
+        Computer Science graduate based in Greece. I work with Angular,
+        TypeScript, RxJS, and RESTful APIs to deliver scalable, responsive web
+        applications in Agile teams.
+      </p>
+
+      <div class="hero-card__actions">
+        <a class="button button--dark" href="#projects">See my work</a>
+        <a class="button button--light" href="mailto:dxynos@outlook.com"
           >Contact</a
         >
-        <a
-          class="btn btn-primary btn-lg px-4"
-          href="https://drive.google.com/uc?export=download&id=1U1PRXHN7D7zvES9OS12zcB_zqtoQ4vNg"
-          target="_blank"
-          rel="noopener noreferrer"
-          >CV</a
-        >
       </div>
-    </div>
-  </div>
-</div>
+    </section>
 
-<nav
-  class="navbar navbar-expand navbar-dark border-top border-bottom"
-  aria-label="navbar"
->
-  <div class="container-xl justify-content-center">
-    <ul class="navbar-nav mb-2 mb-lg-0">
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/about">About</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/projects">Projects</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/skills">Skills</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/contact">Contact</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <div class="right-stack">
+      <section class="intro-panel">
+        <h2>Front-End Developer with hands-on product experience.</h2>
+        <p>
+          Currently building and improving Angular applications at Obrela
+          Security Industries. Key work includes AngularJS-to-Angular migration,
+          custom design systems, and performance-focused feature delivery.
+        </p>
+      </section>
+
+      <section class="panel" id="experience">
+        <div class="section-heading">
+          <p>Professional experience</p>
+        </div>
+
+        <div class="stack-list">
+          <article class="stack-card">
+            @for (item of experienceItems; track $index) {
+              <div class="stack-card__icon"></div>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p class="stack-card__company">{{ item.company }}</p>
+              </div>
+              <p class="stack-card__meta">{{ item.period }}</p>
+            }
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="recognition">
+        <div class="section-heading">
+          <p>Certifications & Languages</p>
+        </div>
+
+        <div class="stack-list">
+          <article class="stack-card stack-card--recognition">
+            @for (item of recognitionItems; track $index) {
+              <div class="stack-card__icon stack-card__icon--light"></div>
+              <div>
+                <h3>{{ item.title }}</h3>
+                <p class="stack-card__company">{{ item.company }}</p>
+              </div>
+              <p class="stack-card__meta">{{ item.period }}</p>
+            }
+          </article>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="section-heading">
+          <p>Core skills</p>
+        </div>
+
+        <div class="service-list">
+          <article class="service-card">
+            @for (item of serviceItems; track $index) {
+              <h3>{{ item.title }}</h3>
+              <p>{{ item.text }}</p>
+            }
+          </article>
+        </div>
+      </section>
+
+      <section class="panel" id="projects">
+        <div class="section-heading">
+          <p>Selected works</p>
+        </div>
+
+        <div class="project-grid">
+          @for (item of projectItems; track $index) {
+            <a
+              class="project-card"
+              [href]="item.href"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card__media">
+                <img [src]="item.image" [alt]="item.title" />
+              </div>
+              <div class="project-card__body">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+              </div>
+            </a>
+          }
+        </div>
+      </section>
+
+      <section class="contact-banner" id="contact">
+        <div>
+          <h2>
+            Open to front-end opportunities and Angular-focused product teams.
+          </h2>
+          <p class="contact-banner__meta">
+            +30 6980249001 · dxynos@outlook.com · dxynos.com ·
+            github.com/dimitrisx26
+          </p>
+        </div>
+        <a class="button button--dark" href="mailto:dxynos@outlook.com"
+          >Talk with me</a
+        >
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer-bar">
+    <div>
+      <p class="footer-bar__name">Dimitrios Xynos</p>
+      <p>Front-End Developer | Computer Science Graduate</p>
+    </div>
+
+    <div class="footer-bar__links">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="mailto:dxynos@outlook.com">Contact</a>
+    </div>
+
+    <a class="button button--light" href="#top">Back to top</a>
+  </footer>
+</div>
