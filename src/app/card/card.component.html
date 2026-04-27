@@ -222,6 +222,9 @@
             class="qr-code"
           />
           <p class="qr-label">Scan to add this card</p>
+          <p *ngIf="walletDeepLinkMode" class="qr-label">
+            Tap "Save to Wallet" below
+          </p>
           <div class="wallet-actions">
             <button
               class="download-vcf save-contact"

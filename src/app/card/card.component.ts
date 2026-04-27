@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   standalone: false,
 })
 export class CardComponent implements OnInit {
+  walletDeepLinkMode = false;
+
   readonly profile = {
     name: 'Dimitrios Xynos',
     title: 'Web Developer',
@@ -93,7 +95,7 @@ END:VCARD`;
   ngOnInit(): void {
     const params = new URLSearchParams(window.location.search);
     if (params.get('addWallet') === '1') {
-      this.openWalletPrompt();
+      this.walletDeepLinkMode = true;
     }
   }
 
@@ -113,14 +115,6 @@ END:VCARD`;
   }
 
   async openWalletPrompt(): Promise<void> {
-    const shouldContinue = window.confirm(
-      'Add Dimitrios Xynos card to your wallet/contact app now?',
-    );
-
-    if (!shouldContinue) {
-      return;
-    }
-
     await this.addToWallet();
   }
 
