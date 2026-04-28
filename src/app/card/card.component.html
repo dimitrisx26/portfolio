@@ -218,27 +218,29 @@
         <div class="qr-section">
           <img
             [src]="qrCodeUrl"
-            alt="QR code to open add-to-wallet prompt"
+            alt="QR code to save the contact vCard"
             class="qr-code"
           />
-          <p class="qr-label">Scan to add this card</p>
-          <p *ngIf="walletDeepLinkMode" class="qr-label">
-            Tap "Save to Wallet" below
+          <p class="qr-label">Scan to save the contact vCard</p>
+          <p class="qr-label">
+            Or use the buttons below for Apple or Google Wallet
           </p>
           <div class="wallet-actions">
             <button
               class="download-vcf save-contact"
-              (click)="downloadVCard()"
-              title="Download vCard for contacts"
+              (click)="downloadPass()"
+              title="Download the Apple Wallet pass"
             >
-              Save as Contact
+              <i class="bi bi-apple wallet-action-icon" aria-hidden="true"></i>
+              <span>Add to Apple Wallet</span>
             </button>
             <button
               class="download-vcf save-wallet"
-              (click)="openWalletPrompt()"
-              title="Prompt add to wallet/contact app"
+              (click)="downloadVCard()"
+              title="Download the Google Wallet vCard"
             >
-              Save to Wallet
+              <i class="bi bi-google wallet-action-icon" aria-hidden="true"></i>
+              <span>Add to Google Wallet</span>
             </button>
           </div>
         </div>
@@ -282,6 +284,6 @@
       <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
       <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>
-    <span>Copied to clipboard!</span>
+    <span>{{ toastMessage }}</span>
   </div>
 </div>

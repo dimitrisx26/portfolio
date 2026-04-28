@@ -335,6 +335,10 @@
 }
 
 .download-vcf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   padding: 10px 16px;
   border-radius: 12px;
   font-size: 0.82rem;
@@ -353,6 +357,11 @@
   text-align: center;
 }
 
+.wallet-action-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+
 .download-vcf:hover {
   transform: translateY(-1px);
   box-shadow: 0 10px 22px rgba(16, 21, 31, 0.08);
@@ -361,12 +370,23 @@
 }
 
 .download-vcf.save-wallet {
+  background: #1f5fff;
+  color: #fff;
+  border-color: #1f5fff;
+}
+
+.download-vcf.save-wallet:hover {
+  background: #1748d9;
+  box-shadow: 0 12px 24px rgba(31, 95, 255, 0.22);
+}
+
+.download-vcf.save-contact {
   background: #111827;
   color: #fff;
   border-color: #111827;
 }
 
-.download-vcf.save-wallet:hover {
+.download-vcf.save-contact:hover {
   background: #0b1220;
   box-shadow: 0 12px 24px rgba(17, 24, 39, 0.18);
 }
@@ -436,9 +456,11 @@
 }
 
 .action-btn:first-child:hover {
-  background: rgba(255, 255, 255, 0.98);
+  background: #0b1220;
+  color: #fff;
   transform: translateY(-1px);
-  box-shadow: 0 10px 22px rgba(16, 21, 31, 0.08);
+  box-shadow: 0 12px 24px rgba(17, 24, 39, 0.18);
+  border-color: #111827;
 }
 
 .action-btn:last-child {

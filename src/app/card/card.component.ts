@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,9 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './card.component.css',
   standalone: false,
 })
-export class CardComponent implements OnInit {
-  walletDeepLinkMode = false;
-
+export class CardComponent {
   readonly profile = {
     name: 'Dimitrios Xynos',
     title: 'Web Developer',
@@ -64,7 +62,8 @@ export class CardComponent implements OnInit {
     { label: 'Contact', url: 'mailto:dxynos@outlook.com', color: '#007acc' },
   ];
 
-  // Generate vCard format for contact saving
+  readonly faviconUrl = 'https://dxynos.com/favicon.ico';
+
   readonly vCardData = `BEGIN:VCARD
 VERSION:4.0
 N:Xynos;Dimitrios;;;
@@ -74,29 +73,41 @@ TITLE:Web Developer
 TEL;TYPE=cell:+306980249001
 EMAIL:dxynos@outlook.com
 URL:https://dxynos.com
+PHOTO;VALUE=URI:${this.faviconUrl}
 ADR:;;Athens;;;
 NOTE:Full-stack web developer | Angular, Astro, Next.js, PostgreSQL, Supabase
 END:VCARD`;
 
-  readonly baseUrl = 'https://dxynos.com';
-  readonly walletPromptUrl = this.baseUrl + '/card?addWallet=1';
+  readonly passAssetUrl = '/assets/card.pkpass';
 
   getCurrentUrl(): string {
-    return this.baseUrl + '/card';
+    return window.location.origin + '/card';
   }
 
-  readonly qrCodeUrl =
-    'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' +
-    encodeURIComponent(this.walletPromptUrl);
+  get walletPassUrl(): string {
+    return new URL(this.passAssetUrl, window.location.origin).toString();
+  }
+
+  get qrCodeUrl(): string {
+    return (
+      'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' +
+      encodeURIComponent(this.vCardData)
+    );
+  }
 
   showToast = false;
+  toastMessage = 'Copied to clipboard!';
   private toastTimeout: any;
 
-  ngOnInit(): void {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('addWallet') === '1') {
-      this.walletDeepLinkMode = true;
-    }
+  downloadPass(): void {
+    const a = document.createElement('a');
+
+    a.href = this.walletPassUrl;
+    a.download = 'card.pkpass';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    this.showToastMessageWithText('Apple Wallet pass downloaded');
   }
 
   downloadVCard(): void {
@@ -111,46 +122,20 @@ END:VCARD`;
     document.body.removeChild(a);
 
     URL.revokeObjectURL(url);
-    this.showToastMessage();
+    this.showToastMessageWithText('Google Wallet vCard downloaded');
   }
 
-  async openWalletPrompt(): Promise<void> {
-    await this.addToWallet();
-  }
-
-  private async addToWallet(): Promise<void> {
-    const file = new File([this.vCardData], 'dimitrios-xynos-contact.vcf', {
-      type: 'text/vcard',
-    });
-
-    const nav = navigator as Navigator & {
-      canShare?: (data?: ShareData) => boolean;
-    };
-
-    try {
-      if (nav.share && nav.canShare?.({ files: [file] })) {
-        await nav.share({
-          title: 'Dimitrios Xynos - Digital Card',
-          text: 'Add this digital card to your wallet/contact app.',
-          files: [file],
-          url: this.getCurrentUrl(),
-        });
-        this.showToastMessage();
-        return;
-      }
-    } catch (err) {
-      // If user cancels share, stop silently. Otherwise fallback to vCard download.
-      if ((err as Error)?.name === 'AbortError') {
-        return;
-      }
-    }
-
-    // Fallback for browsers without file sharing support.
-    this.downloadVCard();
+  openWalletPrompt(): void {
+    window.location.assign(this.walletPassUrl);
   }
 
   showToastMessage(): void {
+    this.showToastMessageWithText('Copied to clipboard!');
+  }
+
+  showToastMessageWithText(message: string): void {
     this.showToast = true;
+    this.toastMessage = message;
 
     if (this.toastTimeout) {
       clearTimeout(this.toastTimeout);
@@ -167,7 +152,7 @@ END:VCARD`;
       navigator.clipboard
         .writeText(text)
         .then(() => {
-          this.showToastMessage();
+          this.showToastMessageWithText('Copied to clipboard!');
         })
         .catch((err) => {
           console.error('Failed to copy:', err);
