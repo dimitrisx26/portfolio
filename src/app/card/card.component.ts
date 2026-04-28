@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
   standalone: false,
 })
 export class CardComponent {
+  readonly cvDownloadUrl =
+    'https://drive.google.com/uc?export=download&id=1U1PRXHN7D7zvES9OS12zcB_zqtoQ4vNg';
+
   readonly profile = {
     name: 'Dimitrios Xynos',
     title: 'Web Developer',
