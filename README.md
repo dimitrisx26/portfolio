@@ -1,6 +1,26 @@
 # Portfolio
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.3.
+This project uses Angular 21.
+
+## Node.js setup
+
+Use Node.js 24.22.1 (pinned in `.nvmrc`):
+
+```sh
+nvm install
+nvm use
+npm ci
+```
+
+The supported runtime range is `^22.23.4 || ^24.22.1`. These minimum versions
+include the [October 21, 2026 Node.js security fixes](https://nodejs.org/en/blog/vulnerability/october-2026-security-releases).
+The project enables npm's `engine-strict` setting to reject installations on
+older vulnerable releases and unsupported major versions.
+
+Configure hosting builds and CI to use Node.js 24.22.1 or a newer 24.x patch.
+For hosts that select Node.js by major version, select 24.x and verify the build
+logs report at least 24.22.1. Rebuild and redeploy after changing the build runtime.
+This app builds static browser assets and does not configure a Node.js server.
 
 ## Development server
 
@@ -16,7 +36,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `npm test` to execute the unit tests via Vitest.
 
 ## Running end-to-end tests
 
