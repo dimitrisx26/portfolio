@@ -10,24 +10,10 @@ export class MainComponent {
   readonly cvDownloadUrl =
     'https://drive.google.com/uc?export=download&id=1U1PRXHN7D7zvES9OS12zcB_zqtoQ4vNg';
 
-  readonly coreSkillItems = [
-    'JavaScript',
-    'TypeScript',
-    'Angular',
-    'RxJS',
-    'Astro',
-    'React',
-    'Next.js',
-    'HTML5',
-    'CSS3/SASS',
-    'Tailwind CSS',
-    'Bootstrap',
-    'REST APIs',
-    'PostgreSQL',
-    'Supabase',
-    'Git/GitHub',
-    'Responsive Design',
-    'UI/UX',
+  readonly skillGroups = [
+    { title: 'Frontend', items: ['TypeScript', 'JavaScript', 'Angular', 'React', 'Next.js', 'Astro', 'RxJS'] },
+    { title: 'Backend & data', items: ['REST APIs', 'PostgreSQL', 'Supabase'] },
+    { title: 'Design & delivery', items: ['HTML5', 'CSS3/SASS', 'Tailwind CSS', 'Bootstrap', 'Responsive Design', 'UI/UX', 'Git/GitHub'] },
   ];
 
   readonly experienceItems = [
@@ -50,20 +36,16 @@ export class MainComponent {
 
   readonly serviceItems = [
     {
-      title: 'Full Site Development',
-      text: 'End-to-end website creation from design to deployment, combining aesthetics with functionality for seamless user experiences across all devices.',
+      title: 'Web applications',
+      text: 'Responsive applications with modern frontend frameworks, APIs, and databases, from customer-facing flows to administrative tools.',
     },
     {
-      title: 'Web App Development',
-      text: 'Building interactive, scalable web applications with Angular, React, and TypeScript, featuring real-time data and responsive interfaces.',
+      title: 'Websites & landing pages',
+      text: 'Fast, responsive websites that present a business clearly and help visitors find the information they need.',
     },
     {
-      title: 'E-Shop Development',
-      text: 'Creating robust online stores with secure payment processing, inventory management, and optimized checkout flows for maximum conversion.',
-    },
-    {
-      title: 'Landing Page Development',
-      text: 'Developing high-converting, fast-loading landing pages optimized for campaigns, product launches, and lead generation.',
+      title: 'Product development',
+      text: 'Improving existing applications through thoughtful interfaces, maintainable components, and collaborative development.',
     },
   ];
 
@@ -90,27 +72,4 @@ export class MainComponent {
     },
   ];
 
-  readonly projectItems = [
-    {
-      title: 'Fresh Cuts Barber Studio',
-      description:
-        'Portfolio website for a barbershop with modern design, that adapts to the character of the brand and highlights the services offered.',
-      image: '/assets/images/freshcuts-preview.webp',
-      href: 'https://freshcuts.gr',
-    },
-    {
-      title: 'Panos Koufoudakis Dietitian',
-      description:
-        'Portfolio website for a dietitian with clean design, that effectively presents the services offered and the professional background of the dietitian.',
-      image: '/assets/images/koufoudakis-preview.webp',
-      href: 'https://koufoudakis-dietitian.gr',
-    },
-    {
-      title: 'Kivia - SaaS Product',
-      description:
-        'SaaS product platform that provides a comprehensive solution for managing and optimizing business operations for nutritionists.',
-      image: '/assets/images/kivia-preview.webp',
-      href: 'https://usekivia.com',
-    },
-  ];
 }

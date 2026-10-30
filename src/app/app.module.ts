@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { CardComponent } from './card/card.component';
+import { ProjectsComponent } from './projects/projects.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
@@ -13,7 +14,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, MainComponent, CardComponent],
+  declarations: [AppComponent, MainComponent, CardComponent, ProjectsComponent],
   bootstrap: [AppComponent],
   imports: [
     BrowserModule,

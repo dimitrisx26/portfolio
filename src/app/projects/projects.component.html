@@ -1,0 +1,41 @@
+      <section class="panel" id="projects">
+        <div class="section-heading">
+          <h2>Selected works</h2>
+        </div>
+
+        <div class="project-grid">
+          @for (item of projectItems; track $index) {
+            <a
+              class="project-card"
+              [href]="item.href"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="project-card__media">
+                <img [src]="item.image" alt="" width="1280" height="720" loading="lazy" />
+              </div>
+              <div class="project-card__body">
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.description }}</p>
+              </div>
+            </a>
+          }
+        </div>
+
+        <div class="case-studies" aria-label="Project details">
+          <article class="case-study">
+            <h3>Fresh Cuts Booking Platform</h3>
+            <p>An appointment platform that brings service and barber selection, availability, and booking management together.</p>
+            <p><strong>Approach:</strong> A bilingual booking flow and an administration portal supported by a FastAPI and PostgreSQL backend. Database constraints help prevent overlapping bookings.</p>
+            <p class="case-study__stack">Astro · React · TypeScript · Tailwind CSS · FastAPI · PostgreSQL</p>
+            <a href="https://booking.freshcuts.gr" target="_blank" rel="noopener noreferrer">Visit Fresh Cuts Booking <span aria-hidden="true">↗</span></a>
+          </article>
+          <article class="case-study">
+            <h3>Kivia</h3>
+            <p>A workspace for nutrition professionals to organize appointments and follow-up between sessions.</p>
+            <p><strong>Product:</strong> Kivia brings messages, check-ins, meal plans, and client follow-up into one place, with a portal where clients can view their plans and send updates.</p>
+            <p class="case-study__stack">Next.js · React · TypeScript · Tailwind CSS · Supabase</p>
+            <a href="https://usekivia.com" target="_blank" rel="noopener noreferrer">Visit Kivia <span aria-hidden="true">↗</span></a>
+          </article>
+        </div>
+      </section>

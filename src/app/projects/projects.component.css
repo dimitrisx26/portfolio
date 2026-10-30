@@ -1,0 +1,67 @@
+ :host { display: block; }
+section { scroll-margin-top: 110px; }
+a:focus-visible { outline: 3px solid #2458f5; outline-offset: 4px; }
+.section-heading { display: block; margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid rgba(16, 21, 31, 0.08); }
+.section-heading h2 { margin: 0 0 14px; text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.72rem; color: #2458f5; font-weight: 700; }
+.project-grid { display: grid; gap: 14px; }
+.project-card { border: 1px solid rgba(16, 21, 31, 0.08); background: rgba(255, 255, 255, 0.9); border-radius: 24px; overflow: hidden; }
+.project-card__body h3 { margin: 0; font-family: "Fraunces", serif; font-weight: 600; letter-spacing: -0.02em; }
+.project-card__body p { color: rgba(16, 21, 31, 0.74); }
+.project-grid {
+  grid-template-columns: 1fr;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: minmax(240px, 44%) minmax(0, 1fr);
+  text-decoration: none;
+  color: inherit;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.1);
+  border-color: rgba(36, 88, 245, 0.22);
+}
+
+.project-card__media {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #f2f5fb;
+}
+
+.project-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-card__body {
+  padding: 18px 18px 18px 20px;
+}
+
+.project-card__body h3 {
+  font-size: 1.24rem;
+}
+
+.project-card__body p {
+  margin: 8px 0 0;
+  font-size: 0.96rem;
+  line-height: 1.55;
+}
+
+.case-studies { display: grid; gap: 0; margin-top: 28px; }
+.case-study { padding: 22px 0; border-top: 1px solid rgba(16, 21, 31, 0.12); }
+.case-study h3 { margin: 0; font-family: "Fraunces", serif; font-size: 1.3rem; }
+.case-study p { margin: 10px 0; color: rgba(16, 21, 31, 0.74); line-height: 1.65; }
+.case-study__stack { font-size: 0.85rem; font-weight: 600; }
+.case-study a { display: inline-block; margin-top: 4px; color: #1747cc; font-weight: 600; text-underline-offset: 4px; }
+
+@media (max-width: 1080px) { .project-card { grid-template-columns: minmax(220px, 44%) minmax(0, 1fr); } }
+@media (max-width: 620px) { .project-card { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .project-card { transition-duration: 0.01ms; } }
