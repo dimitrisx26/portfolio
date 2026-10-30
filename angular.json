@@ -28,7 +28,13 @@
             "browser": "src/main.ts",
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/robots.txt", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/robots.txt",
+              "src/llms.txt",
+              { "glob": "ard.json", "input": "src/.well-known", "output": ".well-known" },
+              "src/assets"
+            ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/bootstrap-icons/font/bootstrap-icons.css",

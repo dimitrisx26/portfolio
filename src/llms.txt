@@ -1,0 +1,16 @@
+# Dimitrios Xynos
+
+> Dimitrios Xynos is a full-stack developer based in Greece. This portfolio presents his experience, skills, services, and selected projects.
+
+## Portfolio
+
+- [Portfolio](https://dxynos.com/): Introduction, experience, skills, and contact information.
+- [Selected projects](https://dxynos.com/#projects): Project previews and details about Fresh Cuts Booking and Kivia.
+- [Digital business card](https://dxynos.com/card): Contact details and professional links.
+
+## Selected projects
+
+- [Fresh Cuts Booking](https://booking.freshcuts.gr/): Appointment booking platform for a barbershop.
+- [Fresh Cuts Barber Studio](https://freshcuts.gr/): Barbershop website.
+- [Panos Koufoudakis Dietitian](https://koufoudakis-dietitian.gr/): Dietitian's website.
+- [Kivia](https://usekivia.com/): Nutrition practice management platform.
